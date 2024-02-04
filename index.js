@@ -16,7 +16,13 @@ app.get("/", async (req, res) => {
   const getAllActors = await Actor.find();
   res.json(getAllActors);
 });
-
+app.get("/:name", async (req, res) => {
+  const nameActor = req.params.name;
+  const getAllActors = await Actor.find({
+    nameActor: { $regex: nameActor, $options: "i" },
+  });
+  res.json(getAllActors);
+});
 app.post("/", async (req, res) => {
   const actor = new Actor({
     nameActor: req.body.nameActor,
