@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 let dotenv = require("dotenv");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
+app.use(cors());
 mongoose.connect(process.env.BASE_URL);
 const Actor = mongoose.model("Actor", {
   nameActor: String,
